@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Můj formulář</title>
+
+    <style>
+
+        body {
+            background: #111827;
+            color: white;
+            font-family: Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #1f2937;
+            padding: 40px;
+            border-radius: 15px;
+            width: 320px;
+            text-align: center;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button {
+            background: #6366f1;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #4f46e5;
+        }
+
+        .result {
+            color: #4ade80;
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>O tobě</h1>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label>Vyber pohlaví:</label>
+
+            <select name="pohlavi" required>
+                <option value="">Vyber možnost</option>
+                <option value="muž">Muž</option>
+                <option value="žena">Žena</option>
+            </select>
+
+            <label>Kolik ti je let?</label>
+
+            <input
+                type="number"
+                name="vek"
+                placeholder="Zadej věk"
+                min="0"
+                max="120"
+                required
+            >
+
+            <button type="submit">Odeslat</button>
+
+        </form>
+
+        {% if zprava %}
+
+            <div class="result">
+                {{ zprava }}
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
